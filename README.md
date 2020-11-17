@@ -1,24 +1,93 @@
-# README
+# DB設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users table
+ユーザー管理機能
 
-Things you may want to cover:
+| Column             | Type    | Options                   |
+| ------------------ | ------- | ------------------------- |
+| name               | string  | null: false               |
+| email              | string  | null: false, unique: true |
+| encrypted_password | string  | null: false               |
 
-* Ruby version
 
-* System dependencies
+### Association
+_ has_many :genres
 
-* Configuration
+## genres table
+ジャンル情報
 
-* Database creation
+| Column     | Type         | Options                        |
+| ---------- | ------------ | ------------------------------ |
+| text       | text         |                                |
+| name       | string       | null: false                    |
+| genre_task | references   | null: false, foreign_key: true |
 
-* Database initialization
+### Association
+_ belongs_to :user
+_ has_many   :genre_tasks
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+#  genre_tasks table
+ジャンル_タスク中間テーブル
 
-* Deployment instructions
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| genre  | references | null: false, foreign_key: true |
+| task   | references | null: false, foreign_key: true |
 
-* ...
+### Association
+_ belongs_to :genre
+_ belongs_to :task
+
+
+## tasks table
+タスク情報
+
+| Column        | Type         | Options                        |
+| ------------- | ------------ | ------------------------------ |
+| text          | text         |                                |
+| name          | string       | null: false                    |
+| task_minitask | references   | null: false, foreign_key: true |
+
+### Association
+_ has_many :genre_tasks
+_ has_many :task_minitasks
+
+
+#  genre_tasks table
+タスク_ミニタスク中間テーブル
+
+| Column   | Type       | Options                        |
+| -------- | ---------- | ------------------------------ |
+| task     | references | null: false, foreign_key: true |
+| minitask | references | null: false, foreign_key: true |
+
+### Association
+_ belongs_to :task
+_ belongs_to :minitask
+
+
+## minitasks table
+ミニタスク情報
+
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| text          | text       |                                |
+| name          | string     | null: false                    |
+| timer         | references | null: false, foreign_key: true |
+| task_minitask | references | null: false, foreign_key: true |
+
+
+### Association
+_ has_many :task_minitasks
+_ has_one  :timer
+
+
+## timers table
+時間情報
+
+| Column   | Type       | Options                        |
+| -------- | ---------- | ------------------------------ |
+| time     | date       | null: false                    |
+| day_id   | integer    | null: false                    |
+| minitask | references | null: false, foreign_key: true |
