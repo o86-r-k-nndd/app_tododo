@@ -31,6 +31,12 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  #RSpecの導入
+  gem 'rspec-rails', '~> 4.0.0'
+  #Factory-botの導入
+  gem 'factory_bot_rails'
+  #Fakerの導入
+  gem 'faker'
 end
 
 group :development do
@@ -52,3 +58,6 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# ユーザー管理機能実装
+gem 'devise'
