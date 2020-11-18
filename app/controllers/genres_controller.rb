@@ -1,4 +1,4 @@
 class GenresController < ApplicationController
-  def indes
+  def index
   end
 end
