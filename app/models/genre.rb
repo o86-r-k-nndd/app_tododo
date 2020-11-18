@@ -1,6 +1,6 @@
 class Genre < ApplicationRecord
   # validation
-  validates :name, presense: true
+  validates :name, presence: true
   # association
   belongs_to :user
 end
