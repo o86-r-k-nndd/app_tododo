@@ -1,0 +1,2 @@
+class GenreTask < ApplicationRecord
+end
