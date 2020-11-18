@@ -2,7 +2,9 @@ class GenresController < ApplicationController
   # ログインしていない場合はログイン画面へ遷移
   before_action :authenticate_user!
   # 別ユーザーはトップページへ遷移
-  before_action :login_user_genre?, only: [:create]
+  before_action :login_user_genre?, only: [:edit, :update]
+  # モデルの生成
+  before_action :set_table_genre, only: [:edit, :update]
 
   # Top
   def index
@@ -21,6 +23,17 @@ class GenresController < ApplicationController
       render :new
     end
   end
+  # ジャンルの編集
+  def edit
+  end
+  # 値の更新
+  def update
+    if @genre.update(genre_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
+  end
 
   private
   # ストロングパラメータ
@@ -29,10 +42,14 @@ class GenresController < ApplicationController
   end
   # 他のユーザーのジャンルの画面へ遷移しようとした時
   def login_user_genre?
-    @genre = Genre.new(genre_params)
-    unless current_user.id == @genre.user_id
+    @genre_log = Genre.find(params[:id])
+    unless current_user.id == @genre_log.user_id
       redirect_to root_path
     end
+  end
+  # 特定のテーブルの値を取得
+  def set_table_genre
+    @genre = Genre.find(params[:id])
   end
 
 end

@@ -13,11 +13,14 @@
     <% @genre.each do |g| %>
       <span>genre</span>
       <li><%= g.name %></li>
-      <% unless g.text.nil?%>
+      <% unless g.text.nil? %>
         <span>text</span>
         <li><%= g.text %></li>
       <% end %>
+      <%= link_to '編集', edit_genre_path(g.id) %>
+      <%= link_to '削除', "#" %>
     <% end %>
   </ul>
 <% end %>
-<%= link_to '新規投稿', new_genre_path%>
+
+<%= link_to '新規投稿', new_genre_path %>
