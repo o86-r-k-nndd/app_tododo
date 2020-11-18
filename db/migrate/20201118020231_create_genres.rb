@@ -3,7 +3,7 @@ class CreateGenres < ActiveRecord::Migration[6.0]
     create_table :genres do |t|
       t.text       :text
       t.string     :name
-      t.references :genre_task
+      t.references :user
       t.timestamps
     end
   end

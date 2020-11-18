@@ -16,11 +16,11 @@ _ has_many :genres
 ## genres table
 ジャンル情報
 
-| Column     | Type         | Options                        |
-| ---------- | ------------ | ------------------------------ |
-| text       | text         |                                |
-| name       | string       | null: false                    |
-| genre_task | references   | null: false, foreign_key: true |
+| Column     | Type       | Options                        |
+| ---------- | ---------- | ------------------------------ |
+| text       | text       |                                |
+| name       | string     | null: false                    |
+| user       | references | null: false, foreign_key: true |
 
 ### Association
 _ belongs_to :user
@@ -43,11 +43,11 @@ _ belongs_to :task
 ## tasks table
 タスク情報
 
-| Column        | Type         | Options                        |
-| ------------- | ------------ | ------------------------------ |
-| text          | text         |                                |
-| name          | string       | null: false                    |
-| task_minitask | references   | null: false, foreign_key: true |
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| text          | text       |                                |
+| name          | string     | null: false                    |
+
 
 ### Association
 _ has_many :genre_tasks
@@ -75,7 +75,6 @@ _ belongs_to :minitask
 | text          | text       |                                |
 | name          | string     | null: false                    |
 | timer         | references | null: false, foreign_key: true |
-| task_minitask | references | null: false, foreign_key: true |
 
 
 ### Association
@@ -90,4 +89,6 @@ _ has_one  :timer
 | -------- | ---------- | ------------------------------ |
 | time     | date       | null: false                    |
 | day_id   | integer    | null: false                    |
-| minitask | references | null: false, foreign_key: true |
+
+### Association
+_ belongs_to :minitask

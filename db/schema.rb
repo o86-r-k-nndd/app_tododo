@@ -15,10 +15,10 @@ ActiveRecord::Schema.define(version: 2020_11_18_020231) do
   create_table "genres", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "text"
     t.string "name"
-    t.bigint "genre_task_id"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["genre_task_id"], name: "index_genres_on_genre_task_id"
+    t.index ["user_id"], name: "index_genres_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
