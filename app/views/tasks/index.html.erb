@@ -10,10 +10,10 @@
         <span>text</span>
         <li><%=  %></li>
       <% end %>
-      <%= link_to '編集', "#" %>
+      <%= link_to '編集',edit_genre_task_path(@genre.id, g.id ) %>
       <%= link_to '削除', "#", method: :delete %>
     <% end %>
   </ul>
 <% end %>
 
-<%= link_to '新規投稿',new_genre_task_path(genre_id: @genre.id) %>
+<%= link_to '新規投稿',new_genre_task_path(@genre.id) %>
