@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   private
   #サインアップ時deviseで用いるparamsのデータにUserモデルのカラムを追加する
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: :name)
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end
 
 end
