@@ -4,6 +4,8 @@ class Timer < ApplicationRecord
     validates :time
     validates :day_id, numericality: { other_than: 1 }
   end
+
   # Association
   belongs_to :minitask
+  
 end
