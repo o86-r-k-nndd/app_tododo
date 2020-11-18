@@ -15,7 +15,7 @@
       <li><%= g.name %></li>
       <% unless g.text.nil? %>
         <span>text</span>
-        <li><%= g.text %></li>
+        <li><%= link_to g.text, genre_tasks_path(g.id) %></li>
       <% end %>
       <%= link_to '編集', edit_genre_path(g.id) %>
       <%= link_to '削除', genre_path(g.id), method: :delete %>
