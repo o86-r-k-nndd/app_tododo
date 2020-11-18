@@ -16,7 +16,7 @@
       <% end %>
       <li>
         <%= link_to '編集',edit_genre_task_path(@genre.id, task.id ) %>
-        <%= link_to '削除', "#", method: :delete %>
+        <%= link_to '削除', genre_task_path(@genre.id, task.id), method: :delete %>
       </li>
     <% end %>
   </ul>

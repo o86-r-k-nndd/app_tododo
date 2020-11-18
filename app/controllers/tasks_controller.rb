@@ -4,9 +4,8 @@ class TasksController < ApplicationController
   # ジャンルの値を取得
   before_action :set_table_genre_find, only: [:index, :new, :edit]
   # タスクの値を取得
-  before_action :set_table_task_find,  only: [:edit, :update]
+  before_action :set_table_task_find,  only: [:edit, :update, :destroy]
 
-  
   # タスク一覧
   def index
     @task = Task.order(id: :DESC).all
@@ -15,7 +14,7 @@ class TasksController < ApplicationController
   def new
     @task = Task.new
   end
-  # タスクをデータベースへ保存
+  # 保存
   def create
     @task = Task.new(task_params)
     if @task.save
@@ -26,13 +25,11 @@ class TasksController < ApplicationController
       render :new
     end
   end
-  # タスクを編集
+  # 編集
   def edit
-    @task = Task.find(params[:id])
   end
   # 更新
   def update
-    @task = Task.find(params[:id])
     if @task.update(task_params)
       redirect_to action: :index
     else
@@ -40,6 +37,11 @@ class TasksController < ApplicationController
       set_table_task_find
       render :edit
     end
+  end
+  # 削除
+  def destroy
+    @task.destroy
+    redirect_to action: :index
   end
 
   private
