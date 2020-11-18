@@ -31,6 +31,7 @@ class GenresController < ApplicationController
     if @genre.update(genre_params)
       redirect_to root_path
     else
+      set_table_genre
       render :edit
     end
   end

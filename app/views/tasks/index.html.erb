@@ -12,7 +12,7 @@
       <li><%= task.name %></li>
       <% unless task.text.nil? %>
         <span>text</span>
-        <li><%=  %></li>
+        <li><%= task.text %></li>
       <% end %>
       <li>
         <%= link_to '編集',edit_genre_task_path(@genre.id, task.id ) %>

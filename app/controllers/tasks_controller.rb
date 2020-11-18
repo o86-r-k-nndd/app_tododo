@@ -3,6 +3,9 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
   # ジャンルの値を取得
   before_action :set_table_genre_find, only: [:index, :new, :edit]
+  # タスクの値を取得
+  before_action :set_table_task_find,  only: [:edit, :update]
+
   
   # タスク一覧
   def index
@@ -29,8 +32,14 @@ class TasksController < ApplicationController
   end
   # 更新
   def update
-    binding.pry
-    redirect_to action: :index
+    @task = Task.find(params[:id])
+    if @task.update(task_params)
+      redirect_to action: :index
+    else
+      set_table_genre_find
+      set_table_task_find
+      render :edit
+    end
   end
 
   private
@@ -38,9 +47,13 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:name, :text)
   end
-  # 送られてきたジャンルのテーブルを取得
+  # ジャンルのテーブルを取得
   def set_table_genre_find
     @genre = Genre.find(params[:genre_id])
+  end
+  # タスクのテーブルを取得
+  def set_table_task_find
+    @task = Task.find(params[:id])
   end
   # 中間テーブルへ保存する処理
   def save_genre_task
