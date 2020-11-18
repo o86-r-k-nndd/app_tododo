@@ -18,7 +18,7 @@
         <li><%= g.text %></li>
       <% end %>
       <%= link_to '編集', edit_genre_path(g.id) %>
-      <%= link_to '削除', "#" %>
+      <%= link_to '削除', genre_path(g.id), method: :delete %>
     <% end %>
   </ul>
 <% end %>

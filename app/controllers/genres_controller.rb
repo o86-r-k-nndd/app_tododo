@@ -2,9 +2,9 @@ class GenresController < ApplicationController
   # ログインしていない場合はログイン画面へ遷移
   before_action :authenticate_user!
   # 別ユーザーはトップページへ遷移
-  before_action :login_user_genre?, only: [:edit, :update]
+  before_action :login_user_genre?, only: [:edit, :update, :destroy]
   # モデルの生成
-  before_action :set_table_genre, only: [:edit, :update]
+  before_action :set_table_genre, only: [:edit, :update, :destroy]
 
   # Top
   def index
@@ -33,6 +33,11 @@ class GenresController < ApplicationController
     else
       render :edit
     end
+  end
+  # ジャンルの削除
+  def destroy
+    @genre.destroy
+    redirect_to root_path
   end
 
   private
