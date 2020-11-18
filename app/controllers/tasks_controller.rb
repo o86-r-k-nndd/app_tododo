@@ -1,6 +1,8 @@
 class TasksController < ApplicationController
   # ログインしていない場合はログイン画面へ遷移
   before_action :authenticate_user!
+  # 別のユーザーが遷移しようとした時
+  before_action :login_user_task?
   # ジャンルの値を取得
   before_action :set_table_genre_find, only: [:index, :new, :edit]
   # タスクの値を取得
@@ -62,6 +64,13 @@ class TasksController < ApplicationController
     set_table_genre_find
     @genre_task = GenreTask.new(genre_id: @genre.id, task_id: @task.id)
     @genre_task.save
+  end
+  # 別のユーザーが遷移しようとした時
+  def login_user_task?
+    @genre_log = Genre.find(params[:genre_id])
+    unless current_user.id == @genre_log.user_id
+      redirect_to root_path
+    end
   end
 
 end
