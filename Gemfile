@@ -62,5 +62,10 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # ユーザー管理機能実装
 gem 'devise'
 
-# Pry-Rails
+# binding.pryを利用できる様に
 gem 'pry-rails'
+
+# Herokuでの静的アセット保存
+group :production do
+  gem 'rails_12factor'
+end

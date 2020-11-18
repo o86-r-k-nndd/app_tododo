@@ -10,15 +10,17 @@
 <h1>ジャンル</h1>
 <% if @genre.present? %>
   <ul>
-    <% @genre.each do |g| %>
+    <% @genre.each do |genre| %>
       <span>genre</span>
-      <li><%= g.name %></li>
-      <% unless g.text.nil? %>
-        <span>text</span>
-        <li><%= g.text %></li>
+      <li><%= genre.name %></li>
+      <% unless genre.text.nil? %>
+        <p>text</p>
+        <li><%= link_to genre.text, genre_tasks_path(genre.id) %></li>
       <% end %>
-      <%= link_to '編集', edit_genre_path(g.id) %>
-      <%= link_to '削除', genre_path(g.id), method: :delete %>
+      <li>
+        <%= link_to '編集', edit_genre_path(genre.id) %>
+        <%= link_to '削除', genre_path(genre.id), method: :delete %>
+      </li>
     <% end %>
   </ul>
 <% end %>

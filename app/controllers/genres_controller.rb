@@ -8,7 +8,7 @@ class GenresController < ApplicationController
 
   # Top
   def index
-    @genre = Genre.all.order(id: :DESC).where(user_id: current_user.id)
+    @genre = Genre.order(id: :DESC).where(user_id: current_user.id)
   end
   # 新規ジャンル作成
   def new
@@ -31,6 +31,7 @@ class GenresController < ApplicationController
     if @genre.update(genre_params)
       redirect_to root_path
     else
+      set_table_genre
       render :edit
     end
   end
