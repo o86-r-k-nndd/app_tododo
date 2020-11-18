@@ -1,14 +1,18 @@
 class TasksController < ApplicationController
   # ログインしていない場合はログイン画面へ遷移
   before_action :authenticate_user!
+  # ジャンルの値を取得
+  before_action :set_genre, only: [:index, :new]
   
+  # タスク一覧
   def index
-    set_genre
+    @task = Task.order(id: :DESC).all
   end
+  # 新規タスク作成
   def new
-    set_genre
     @task = Task.new
   end
+  # タスクをデータベースへ保存
   def create
     @task = Task.new(task_params)
     if @task.save
