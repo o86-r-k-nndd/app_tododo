@@ -1,0 +1,26 @@
+<%#ログイン機能%>
+<% if user_signed_in? %>
+  <li><%= link_to current_user.name, "#", class: "user-nickname" %></li>
+  <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logout" %></li>
+<% else %>
+  <li><%= link_to 'ログイン', new_user_session_path, class: "login" %></li>
+  <li><%= link_to '新規登録', new_user_registration_path, class: "sign-up" %></li>
+<% end %>
+
+<h1>ジャンル</h1>
+<% if @genre.present? %>
+  <ul>
+    <% @genre.each do |g| %>
+      <span>genre</span>
+      <li><%= g.name %></li>
+      <% unless g.text.nil? %>
+        <span>text</span>
+        <li><%= g.text %></li>
+      <% end %>
+      <%= link_to '編集', edit_genre_path(g.id) %>
+      <%= link_to '削除', genre_path(g.id), method: :delete %>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= link_to '新規投稿', new_genre_path %>
