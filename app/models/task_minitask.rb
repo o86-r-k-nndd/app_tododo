@@ -1,0 +1,2 @@
+class TaskMinitask < ApplicationRecord
+end

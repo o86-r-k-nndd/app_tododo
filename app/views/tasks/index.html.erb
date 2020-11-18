@@ -8,7 +8,7 @@
       <% task.genres.each do |genre| %>
         <% if genre.user_id == current_user.id %>
           <p>Task</p>
-          <li><%= task.name %></li>
+          <li><%= link_to task.name, root_path %></li>
           <% unless task.text.nil? %>
             <p>text</p>
             <li><%= task.text %></li>

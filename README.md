@@ -25,6 +25,7 @@ _ has_many :genres
 ### Association
 _ belongs_to :user
 _ has_many   :genre_tasks
+_ has_many   :tasks, through: :genre_tasks
 
 
 #  genre_tasks table
@@ -52,9 +53,11 @@ _ belongs_to :task
 ### Association
 _ has_many :genre_tasks
 _ has_many :task_minitasks
+_ has_many :genres, through: :genre_tasks
+_ has_many :minitasks, through: :genre_tasks
 
 
-#  genre_tasks table
+#  task_minitasks table
 タスク_ミニタスク中間テーブル
 
 | Column   | Type       | Options                        |
@@ -79,6 +82,7 @@ _ belongs_to :minitask
 
 ### Association
 _ has_many :task_minitasks
+_ has_many :tasks, through: :genre_tasks
 _ has_one  :timer
 
 
