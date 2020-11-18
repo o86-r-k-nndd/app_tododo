@@ -3,15 +3,21 @@
 <h2>タスク</h2>
 <% unless @task.nil? %>
   <ul>
-    <% @task.each do |g| %>
-      <span>Task</span>
-      <li><%= g.name %></li>
-      <% unless g.text.nil? %>
+    <% @task.each do |task| %>
+      <% task.genres.each do |genre| %>
+        <p><%= genre.user_id %></p>
+        <p><%= genre.name%>
+      <% end %>
+      <p>Task</p>
+      <li><%= task.name %></li>
+      <% unless task.text.nil? %>
         <span>text</span>
         <li><%=  %></li>
       <% end %>
-      <%= link_to '編集',edit_genre_task_path(@genre.id, g.id ) %>
-      <%= link_to '削除', "#", method: :delete %>
+      <li>
+        <%= link_to '編集',edit_genre_task_path(@genre.id, task.id ) %>
+        <%= link_to '削除', "#", method: :delete %>
+      </li>
     <% end %>
   </ul>
 <% end %>

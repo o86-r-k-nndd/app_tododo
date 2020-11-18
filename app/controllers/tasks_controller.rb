@@ -30,6 +30,7 @@ class TasksController < ApplicationController
   # 更新
   def update
     binding.pry
+    redirect_to action: :index
   end
 
   private
