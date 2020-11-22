@@ -1,3 +1,25 @@
-<h1>minitask</h1>
+<h1>ジャンル</h1>
+<%= @genre.name %>
+<h2>タスク</h2>
+<%= @task.name %>
+<h3>ミニタスク</h3>
+<% unless @minitask.nil? %>
+  <ul>
+    <% @minitask.each do |mini| %>
+      <% if @genre.user_id == current_user.id %>
+        <p>miniTask</p>
+        <li><%= link_to mini.name, "#" %></li>
+          <% unless mini.text.nil? %>
+            <p>text</p>
+            <li><%= mini.text %></li>
+          <% end %>
+        <li>
+          <%= link_to '編集',"#"%>
+          <%= link_to '削除', "#", method: :delete %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>
 
 <%= link_to '新規投稿', new_genre_task_minitask_path(@genre, @task)%>

@@ -10,6 +10,7 @@ class MinitasksController < ApplicationController
 
   # minitask一覧
   def index
+    @minitask = Minitask.order(id: :DESC).all
   end
   # 新規ミニタスク作成
   def new
