@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'genres#index'
   resources :genres, only: [:index, :new, :create, :edit, :update, :destroy] do
     resources :tasks, only: [:index, :new, :create, :edit, :update, :destroy] do
-      resources :minitasks, only: [:index]
+      resources :minitasks, only: [:index, :new, :create]
     end
   end
 end

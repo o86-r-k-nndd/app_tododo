@@ -92,7 +92,6 @@ _ has_one  :timer
 | Column   | Type       | Options                        |
 | -------- | ---------- | ------------------------------ |
 | time     | date       | null: false                    |
-| day_id   | integer    | null: false                    |
 | minitask | references | null: false, foreign_key: true |
 
 

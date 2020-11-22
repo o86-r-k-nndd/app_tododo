@@ -33,7 +33,6 @@ class TasksController < ApplicationController
   # 更新
   def update
     if @task.update(task_params)
-      redirect_to action: :index
     else
       set_table_genre_find
       set_table_task_find
@@ -63,7 +62,12 @@ class TasksController < ApplicationController
   def save_genre_task
     set_table_genre_find
     @genre_task = GenreTask.new(genre_id: @genre.id, task_id: @task.id)
-    @genre_task.save
+    if @genre.save
+      redirect_to action: :index
+    else
+      set_table_genre_find
+      render :new
+    end
   end
   # 別のユーザーが遷移しようとした時
   def login_user_task?

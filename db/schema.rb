@@ -57,7 +57,6 @@ ActiveRecord::Schema.define(version: 2020_11_18_225638) do
 
   create_table "timers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "time"
-    t.integer "day_id"
     t.bigint "minitask_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
