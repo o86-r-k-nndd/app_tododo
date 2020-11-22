@@ -21,7 +21,6 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     if @task.save
       save_genre_task
-      redirect_to action: :index
     else
       set_table_genre_find
       render :new
@@ -33,6 +32,7 @@ class TasksController < ApplicationController
   # 更新
   def update
     if @task.update(task_params)
+      redirect_to action: :index
     else
       set_table_genre_find
       set_table_task_find

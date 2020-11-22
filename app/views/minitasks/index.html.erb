@@ -14,7 +14,7 @@
             <li><%= mini.text %></li>
           <% end %>
         <li>
-          <%= link_to '編集',"#"%>
+          <%= link_to '編集', edit_genre_task_minitask_path(@genre.id, @task.id, mini.id)%>
           <%= link_to '削除', "#", method: :delete %>
         </li>
       <% end %>

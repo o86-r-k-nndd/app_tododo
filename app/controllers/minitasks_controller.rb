@@ -7,6 +7,8 @@ class MinitasksController < ApplicationController
   before_action :set_table_genre_find
   # タスクの値を取得
   before_action :set_table_task_find
+  # ミニタスクの値を取得
+  before_action :set_table_minitask_find, only: [:edit, :update]
 
   # minitask一覧
   def index
@@ -27,6 +29,20 @@ class MinitasksController < ApplicationController
       render :new
     end
   end
+  # 編集
+  def edit
+  end
+  # 更新
+  def update
+    if @minitask.update(minitask_params)
+      redirect_to action: :index
+    else
+      set_table_genre_find
+      set_table_task_find
+      set_table_minitask_find
+      render :edit
+    end
+  end
 
   private
   # ストロングパラメーター
@@ -40,6 +56,10 @@ class MinitasksController < ApplicationController
   # タスクのテーブルを取得
   def set_table_task_find
     @task = Task.find(params[:task_id])
+  end
+  # ミニタスクのテーブルを取得
+  def set_table_minitask_find
+    @minitask = Minitask.find(params[:id])
   end
   # 中間テーブルへ保存する処理
   def save_task_minitask
