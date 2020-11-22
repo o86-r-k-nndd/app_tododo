@@ -8,14 +8,14 @@
     <% @minitask.each do |mini| %>
       <% if @genre.user_id == current_user.id %>
         <p>miniTask</p>
-        <li><%= link_to mini.name, "#" %></li>
+        <li><%= mini.name %></li>
           <% unless mini.text.nil? %>
             <p>text</p>
             <li><%= mini.text %></li>
           <% end %>
         <li>
           <%= link_to '編集', edit_genre_task_minitask_path(@genre.id, @task.id, mini.id)%>
-          <%= link_to '削除', "#", method: :delete %>
+          <%= link_to '削除', genre_task_minitask_path(@genre.id, @task.id, mini.id), method: :delete %>
         </li>
       <% end %>
     <% end %>

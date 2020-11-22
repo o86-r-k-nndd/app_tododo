@@ -8,7 +8,7 @@ class MinitasksController < ApplicationController
   # タスクの値を取得
   before_action :set_table_task_find
   # ミニタスクの値を取得
-  before_action :set_table_minitask_find, only: [:edit, :update]
+  before_action :set_table_minitask_find, only: [:edit, :update, :destroy]
 
   # minitask一覧
   def index
@@ -42,6 +42,11 @@ class MinitasksController < ApplicationController
       set_table_minitask_find
       render :edit
     end
+  end
+  # 削除
+  def destroy
+    @minitask.destroy
+    redirect_to action: :index
   end
 
   private
