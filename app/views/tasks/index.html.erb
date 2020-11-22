@@ -1,5 +1,5 @@
 <h1>ジャンル</h1>
-<%= @genre.name %>
+<%= link_to @genre.name, root_path %>
 <h2>タスク</h2>
 <% if @task.present? %>
   <ul>

@@ -1,7 +1,7 @@
 <h1>ジャンル</h1>
-<%= @genre.name %>
+<%= link_to @genre.name, root_path %>
 <h2>タスク</h2>
-<%= @task.name %>
+<%= link_to @task.name, genre_tasks_path(@genre.id) %>
 <h3>ミニタスク</h3>
 <% unless @minitask.nil? %>
   <ul>

@@ -1,12 +1,12 @@
 class TasksController < ApplicationController
   # ログインしていない場合はログイン画面へ遷移
   before_action :authenticate_user!
-  # 別のユーザーが遷移しようとした時
-  before_action :login_user_task?
   # ジャンルの値を取得
   before_action :set_table_genre_find, only: [:index, :new, :edit]
   # タスクの値を取得
   before_action :set_table_task_find,  only: [:edit, :update, :destroy]
+  # 別のユーザーが遷移しようとした時
+  before_action :login_user_task?
 
   # タスク一覧
   def index
@@ -62,7 +62,7 @@ class TasksController < ApplicationController
   def save_genre_task
     set_table_genre_find
     @genre_task = GenreTask.new(genre_id: @genre.id, task_id: @task.id)
-    if @genre.save
+    if @genre_task.save
       redirect_to action: :index
     else
       set_table_genre_find
