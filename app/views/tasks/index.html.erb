@@ -1,23 +1,20 @@
 <h1>ジャンル</h1>
-
+<%= link_to @genre.name, root_path %>
 <h2>タスク</h2>
-<%  %>
-<% unless @task.nil? %>
+<% if @task.present? %>
   <ul>
     <% @task.each do |task| %>
-      <% task.genres.each do |genre| %>
-        <% if genre.user_id == current_user.id %>
-          <p>Task</p>
-          <li><%= task.name %></li>
-          <% unless task.text.nil? %>
-            <p>text</p>
-            <li><%= task.text %></li>
-          <% end %>
-          <li>
-            <%= link_to '編集',edit_genre_task_path(@genre.id, task.id ) %>
-            <%= link_to '削除', genre_task_path(@genre.id, task.id), method: :delete %>
-          </li>
+      <% if @genre.user_id == current_user.id %>
+        <p>Task</p>
+        <li><%= link_to task.name, genre_task_minitasks_path(@genre.id, task.id) %></li>
+        <% unless task.text.nil? %>
+          <p>text</p>
+          <li><%= task.text %></li>
         <% end %>
+        <li>
+          <%= link_to '編集',edit_genre_task_path(@genre.id, task.id ) %>
+          <%= link_to '削除', genre_task_path(@genre.id, task.id), method: :delete %>
+        </li>
       <% end %>
     <% end %>
   </ul>
