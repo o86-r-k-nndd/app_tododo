@@ -14,28 +14,29 @@ class GenresController < ApplicationController
   def new
     @genre = Genre.new
   end
-  # データベースへ保存
+  # 保存
   def create
     @genre = Genre.new(genre_params)
-    if @genre.save
+    if @genre.valid?
+      @genre.save
       redirect_to root_path
     else
       render :new
     end
   end
-  # ジャンルの編集
+  # 編集
   def edit
   end
-  # 値の更新
+  # 更新
   def update
     if @genre.update(genre_params)
       redirect_to root_path
     else
-      set_table_genre
+      @genre.valid?
       render :edit
     end
   end
-  # ジャンルの削除
+  # 削除
   def destroy
     @genre.destroy
     redirect_to root_path

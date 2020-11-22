@@ -1,4 +1,8 @@
+<%# 入力フォーム %>
 <%= form_with model: [@genre, @task, @minitask], local: true do |f| %>
+
+  <%# エラーハンドリング %>
+  <%= render "shared/error_message", model: f.object %>
 
   <%= f.label :name%>
   <%= f.text_area :name, placeholder:"タスク名"%>

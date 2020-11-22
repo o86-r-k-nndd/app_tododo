@@ -19,10 +19,11 @@ class TasksController < ApplicationController
   # 保存
   def create
     @task = Task.new(task_params)
-    if @task.save
+    if @task.valid?
       save_genre_task
     else
       set_table_genre_find
+      @task.valid?
       render :new
     end
   end
@@ -35,7 +36,7 @@ class TasksController < ApplicationController
       redirect_to action: :index
     else
       set_table_genre_find
-      set_table_task_find
+      @task.valid?
       render :edit
     end
   end
@@ -62,10 +63,11 @@ class TasksController < ApplicationController
   def save_genre_task
     set_table_genre_find
     @genre_task = GenreTask.new(genre_id: @genre.id, task_id: @task.id)
-    if @genre_task.save
+    if @genre_task.save && @task.save
       redirect_to action: :index
     else
       set_table_genre_find
+      @task.valid?
       render :new
     end
   end

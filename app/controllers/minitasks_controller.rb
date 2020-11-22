@@ -21,11 +21,12 @@ class MinitasksController < ApplicationController
   # 保存
   def create
     @minitask = Minitask.new(minitask_params)
-    if @minitask.save
+    if @minitask.valid?
       save_task_minitask
     else
       set_table_genre_find
       set_table_task_find
+      @minitask.valid?
       render :new
     end
   end
@@ -39,7 +40,7 @@ class MinitasksController < ApplicationController
     else
       set_table_genre_find
       set_table_task_find
-      set_table_minitask_find
+      @minitask.valid?
       render :edit
     end
   end
@@ -70,7 +71,7 @@ class MinitasksController < ApplicationController
   def save_task_minitask
     set_table_task_find
     @task_minitask = TaskMinitask.new(task_id: @task.id, minitask_id: @minitask.id)
-    if @task_minitask.save
+    if @task_minitask.save && @minitask.save
       redirect_to action: :index
     else
       set_table_genre_find
