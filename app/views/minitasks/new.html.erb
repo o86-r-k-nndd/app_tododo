@@ -4,11 +4,16 @@
   <%# エラーハンドリング %>
   <%= render "shared/error_message", model: f.object %>
 
+  <%# ミニタスク入力 %>
   <%= f.label :name%>
   <%= f.text_area :name, placeholder:"タスク名"%>
 
   <%= f.label :text%>
   <%= f.text_area :text, placeholder:"メモ"%>
+
+  <%# 日付の入力 %>
+  <%= f.label :hoge %>
+  <%= f.date_field :hoge %>
 
   <%= f.submit "投稿する"%>
 <% end %>

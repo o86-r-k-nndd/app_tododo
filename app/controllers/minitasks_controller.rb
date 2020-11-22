@@ -20,6 +20,7 @@ class MinitasksController < ApplicationController
   end
   # 保存
   def create
+    binding.pry
     @minitask = Minitask.new(minitask_params)
     if @minitask.valid?
       save_task_minitask
@@ -35,6 +36,7 @@ class MinitasksController < ApplicationController
   end
   # 更新
   def update
+    binding.pry
     if @minitask.update(minitask_params)
       redirect_to action: :index
     else

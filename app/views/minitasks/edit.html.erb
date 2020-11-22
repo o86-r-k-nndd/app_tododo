@@ -10,5 +10,9 @@
   <%= f.label :text%>
   <%= f.text_area :text, placeholder:"メモ"%>
 
+  <%# 日付の入力 %>
+  <%= f.label :hoge %>
+  <%= f.date_field :hoge %>
+
   <%= f.submit "投稿する"%>
 <% end %>
