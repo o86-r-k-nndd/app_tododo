@@ -1,4 +1,4 @@
 <h1>いつか</h1>
-<%= link_to '戻る', genre_timers_path(current_user.id) %>
-<%= link_to '今日', genre_today_path(current_user.id), controller: 'timers', action: 'today' %>
-<%= link_to '明日', genre_tomorrow_path(current_user.id), controller: 'timers', action: 'tomorrow' %>
+<%= link_to '戻る', timers_path %>
+<%= link_to '今日', today_path %>
+<%= link_to '明日', tomorrow_path %>

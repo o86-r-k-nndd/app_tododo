@@ -29,6 +29,8 @@
 <% end %>
 
 <h2>日付</h2>
-<%= link_to '日付一覧',genre_timers_path(current_user.id) %>
+<% if @genre.present? %>
+  <%= link_to '日付一覧',timers_path %>
+<% end %>
 
 <%= link_to '新規投稿', new_genre_path %>
