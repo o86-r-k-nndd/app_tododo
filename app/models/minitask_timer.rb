@@ -1,23 +1,22 @@
-class TimersController < ApplicationController
-  # Form Object
+class MinitaskTimer
+
   include ActiveModel::Model
-  
+
   # coloum
   attr_accessor :time,
                 :name,
                 :text,
                 :task_id,
                 :minitask_id
-
+  
   # Validateion
-  with_option presence: true do
+  with_options presence: true do
     validates :time
     validates :name
     validates :text
     validates :task_id
-    validates :minitask_id
   end
-
+  
   # 複数モデルへの保存
   def save
     # タスクの取得
@@ -29,4 +28,5 @@ class TimersController < ApplicationController
     # 中間テーブルへの保存
     @task_minitask = TaskMinitask.create(task_id: @task.id, minitask_id: @minitask.id)
   end
+
 end

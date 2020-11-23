@@ -1,8 +1,8 @@
 <%# 入力フォーム %>
-<%= form_with(url: genre_task_minitasks_path, local: true ) do |f| %>
+<%= form_with(model: [@genre, @task, @minitask_timer],url: genre_task_minitasks_path, local: true ) do |f| %>
 
   <%# エラーハンドリング %>
-  <%#= render "shared/error_message", model: f.object %>
+  <%= render "shared/error_message", model: f.object %>
 
   <%= f.label :name%>
   <%= f.text_area :name, placeholder:"タスク名"%>
@@ -11,8 +11,8 @@
   <%= f.text_area :text, placeholder:"メモ"%>
 
   <%# 日付の入力 %>
-  <%= f.label :hoge %>
-  <%= f.date_field :hoge %>
+  <%= f.label :time %>
+  <%= f.date_field :time %>
 
   <%= f.submit "投稿する"%>
 <% end %>
