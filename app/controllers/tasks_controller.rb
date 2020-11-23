@@ -59,16 +59,27 @@ class TasksController < ApplicationController
   def set_table_task_find
     @task = Task.find(params[:id])
   end
-  # 中間テーブルへ保存する処理
+  # 複数のモデルへ保存する処理
   def save_genre_task
     set_table_genre_find
-    @genre_task = GenreTask.new(genre_id: @genre.id, task_id: @task.id)
-    if @genre_task.save && @task.save
-      redirect_to action: :index
+    if @task.valid?
+      @task.save
+      @genre_task = GenreTask.new(genre_id: @genre.id, task_id: @task.id)
+
+      if @genre_task.valid?
+        @genre_task.save
+        redirect_to action: :index
+      else
+        set_table_genre_find
+        @task.valid?
+        render :new
+      end
+
     else
       set_table_genre_find
       @task.valid?
       render :new
+
     end
   end
   # 別のユーザーが遷移しようとした時
