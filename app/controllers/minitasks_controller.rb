@@ -33,16 +33,24 @@ class MinitasksController < ApplicationController
   end
   # 編集
   def edit
+    @minitask_timer = MinitaskTimer.new
   end
   # 更新
   def update
-    binding.pry
-    if @minitask.update(minitask_params)
+    @minitask_timer = MinitaskTimer.new(minitask_timer_update_params)
+    if @minitask_timer.valid?
+      # 日付情報の取得
+      @time = Timer.find_by(minitask_id: params[:id])
+      # ミニタスクの取得
+      @minitask = Minitask.find(params[:id])
+      # 更新
+      binding.pry
+      @time.update(timer_params)
+      @minitask.update(minitask_params)
       redirect_to action: :index
     else
       set_table_genre_find
       set_table_task_find
-      @minitask.valid?
       render :edit
     end
   end
@@ -64,6 +72,16 @@ class MinitasksController < ApplicationController
                                   ).merge(
                                             task_id: params[:task_id])
   end
+  def timer_params
+    params.require(:minitask).permit( :time).merge(minitask_id: params[:id])
+  end
+  def minitask_timer_update_params
+    params.require(:minitask).permit( :name,
+                                      :text,
+                                      :time
+                                    ).merge(
+                                      task_id: params[:task_id])
+end
   # ジャンルのテーブルを取得
   def set_table_genre_find
     @genre = Genre.find(params[:genre_id])

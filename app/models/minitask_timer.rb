@@ -9,7 +9,7 @@ class MinitaskTimer
                 :task_id,
                 :minitask_id
   
-  # Validateion
+  # Validatetion
   with_options presence: true do
     validates :time
     validates :name

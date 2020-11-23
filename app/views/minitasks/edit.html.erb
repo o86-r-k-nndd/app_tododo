@@ -1,8 +1,10 @@
-<%# 入力フォーム %>
-<%= form_with(model: [@genre, @task, @minitask_timer],url: genre_task_minitasks_path, local: true ) do |f| %>
-
-  <%# エラーハンドリング %>
+<%# エラーハンドリング %>
+<%= form_with(model: [@genre, @task, @minitask_timer],url: genre_task_minitasks_path, local: true) do |f| %>
   <%= render "shared/error_message", model: f.object %>
+<% end %>
+
+<%# 入力フォーム %>
+<%= form_with model: [@genre, @task, @minitask], local: true do |f| %>
 
   <%= f.label :name%>
   <%= f.text_area :name, placeholder:"タスク名"%>
