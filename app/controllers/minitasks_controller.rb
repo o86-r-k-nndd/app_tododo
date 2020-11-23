@@ -44,7 +44,6 @@ class MinitasksController < ApplicationController
       # ミニタスクの取得
       @minitask = Minitask.find(params[:id])
       # 更新
-      binding.pry
       @time.update(timer_params)
       @minitask.update(minitask_params)
       redirect_to action: :index
