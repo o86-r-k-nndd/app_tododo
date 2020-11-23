@@ -2,7 +2,7 @@
 <%= form_with model: [@genre, @task, @minitask], local: true do |f| %>
 
   <%# エラーハンドリング %>
-  <%= render "shared/error_message", model: f.object %>
+  <%#= render "shared/error_message", model: f.object %>
 
   <%# ミニタスク入力 %>
   <%= f.label :name%>

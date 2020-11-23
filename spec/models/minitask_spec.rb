@@ -6,7 +6,7 @@ RSpec.describe Minitask, type: :model do
       @minitask = FactoryBot.build(:minitask)
     end
 
-    describe 'タスクの新規作成ができる時' do
+    describe 'ミニタスクの新規作成ができる時' do
       it "全ての値が正しく入力されていれば保存できる" do
         expect(@minitask).to be_valid
       end
@@ -15,8 +15,8 @@ RSpec.describe Minitask, type: :model do
         expect(@minitask).to be_valid
       end
     end
-    describe 'タスクが新規作成できない時' do
-      it "タスクが空" do
+    describe 'ミニタスクが新規作成できない時' do
+      it "ミニタスクが空" do
         @minitask.name = nil
         @minitask.valid?
         expect(@minitask.errors.full_messages).to include("Name can't be blank")

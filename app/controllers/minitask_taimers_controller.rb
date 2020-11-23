@@ -1,0 +1,2 @@
+class MinitaskTaimersController < ApplicationController
+end
