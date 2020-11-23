@@ -1,0 +1,4 @@
+<h1>日付一覧</h1>
+<%= link_to '今日', genre_today_path(current_user.id), controller: 'timers', action: 'today' %>
+<%= link_to '明日', genre_tomorrow_path(current_user.id), controller: 'timers', action: 'tomorrow' %>
+<%= link_to 'いつか', genre_someday_path(current_user.id), controller: 'timers', action: 'someday' %>
