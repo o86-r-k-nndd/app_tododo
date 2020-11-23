@@ -16,30 +16,40 @@ class MinitasksController < ApplicationController
   end
   # 新規ミニタスク作成
   def new
-    @minitask = Minitask.new
+    @minitask_timer = MinitaskTimer.new
   end
   # 保存
   def create
-    @minitask = Minitask.new(minitask_params)
-    if @minitask.save
-      save_task_minitask
+    @minitask_timer = MinitaskTimer.new(minitask_timer_params)
+    if @minitask_timer.valid?
+      @minitask_timer.save
+      redirect_to action: :index
     else
       set_table_genre_find
       set_table_task_find
+      @minitask_timer.valid?
       render :new
     end
   end
   # 編集
   def edit
+    @minitask_timer = MinitaskTimer.new
   end
   # 更新
   def update
-    if @minitask.update(minitask_params)
+    @minitask_timer = MinitaskTimer.new(minitask_timer_update_params)
+    if @minitask_timer.valid?
+      # 日付情報の取得
+      @time = Timer.find_by(minitask_id: params[:id])
+      # ミニタスクの取得
+      @minitask = Minitask.find(params[:id])
+      # 更新
+      @time.update(timer_params)
+      @minitask.update(minitask_params)
       redirect_to action: :index
     else
       set_table_genre_find
       set_table_task_find
-      set_table_minitask_find
       render :edit
     end
   end
@@ -54,6 +64,23 @@ class MinitasksController < ApplicationController
   def minitask_params
     params.require(:minitask).permit(:name, :text)
   end
+  def minitask_timer_params
+    params.require(:minitask_timer).permit( :name,
+                                            :text,
+                                            :time
+                                  ).merge(
+                                            task_id: params[:task_id])
+  end
+  def timer_params
+    params.require(:minitask).permit( :time).merge(minitask_id: params[:id])
+  end
+  def minitask_timer_update_params
+    params.require(:minitask).permit( :name,
+                                      :text,
+                                      :time
+                                    ).merge(
+                                      task_id: params[:task_id])
+end
   # ジャンルのテーブルを取得
   def set_table_genre_find
     @genre = Genre.find(params[:genre_id])
@@ -65,18 +92,6 @@ class MinitasksController < ApplicationController
   # ミニタスクのテーブルを取得
   def set_table_minitask_find
     @minitask = Minitask.find(params[:id])
-  end
-  # 中間テーブルへ保存する処理
-  def save_task_minitask
-    set_table_task_find
-    @task_minitask = TaskMinitask.new(task_id: @task.id, minitask_id: @minitask.id)
-    if @task_minitask.save
-      redirect_to action: :index
-    else
-      set_table_genre_find
-      set_table_task_find
-      render :new
-    end
   end
   # 別のユーザーが遷移しようとした時
   def login_user_task?

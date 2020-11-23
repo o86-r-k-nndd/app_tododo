@@ -1,3 +1,9 @@
+<%# エラーハンドリング %>
+<%= form_with(model: [@genre, @task, @minitask_timer],url: genre_task_minitasks_path, local: true) do |f| %>
+  <%= render "shared/error_message", model: f.object %>
+<% end %>
+
+<%# 入力フォーム %>
 <%= form_with model: [@genre, @task, @minitask], local: true do |f| %>
 
   <%= f.label :name%>
@@ -5,6 +11,10 @@
 
   <%= f.label :text%>
   <%= f.text_area :text, placeholder:"メモ"%>
+
+  <%# 日付の入力 %>
+  <%= f.label :time %>
+  <%= f.date_field :time %>
 
   <%= f.submit "投稿する"%>
 <% end %>

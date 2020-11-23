@@ -33,10 +33,8 @@ ActiveRecord::Schema.define(version: 2020_11_18_225638) do
   create_table "minitasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "text"
     t.string "name"
-    t.bigint "timer_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["timer_id"], name: "index_minitasks_on_timer_id"
   end
 
   create_table "task_minitasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
