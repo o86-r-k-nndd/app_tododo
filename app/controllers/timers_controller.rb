@@ -1,7 +1,7 @@
 class TimersController < ApplicationController
   # ログインしていない場合はログイン画面へ遷移
   before_action :authenticate_user!
-  # ミニタスクに紐づいた日付の情報を取得する処理
+  # @timesにミニタスクへと紐づいた日付の情報を取得する処理
   before_action :set_data
 
   # 日付選択
@@ -18,8 +18,9 @@ class TimersController < ApplicationController
   end
 
   private
-  # ミニタスクに紐づいた日付の情報を取得する処理
+  # 日付の情報を取得する処理
   def set_data
+    ## 配列に日付の情報代入する
     times = []
     @genres = Genre.where(user_id: current_user.id)
     @genres.each do |genre|
@@ -33,6 +34,8 @@ class TimersController < ApplicationController
         end
       end
     end
+    ## //配列に日付の情報を代入する
+    @times = times
   end
 
 end
