@@ -1,0 +1,13 @@
+<h1>日付一覧</h1>
+<%= link_to '戻る', root_path %>
+<%= link_to '今日', today_path %>
+<%= link_to '明日', tomorrow_path %>
+
+<% @times.each do |time| %>
+  <ul>
+    <li>タスク</li>
+    <li><%= time.time %></li>
+    <li><%= time.minitask.name %></li>
+    <li><%= time.minitask.text%></li>
+  </ul>
+<% end %>

@@ -6,7 +6,10 @@
     <% @task.each do |task| %>
       <% if @genre.user_id == current_user.id %>
         <p>Task</p>
-        <li><%= link_to task.name, genre_task_minitasks_path(@genre.id, task.id) %></li>
+        <li>
+          <%= link_to '完了', genre_task_path(@genre.id, task.id), method: :delete %>
+          <%= link_to task.name, genre_task_minitasks_path(@genre.id, task.id) %>
+        </li>
         <% unless task.text.nil? %>
           <p>text</p>
           <li><%= task.text %></li>

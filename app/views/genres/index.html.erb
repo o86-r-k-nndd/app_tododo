@@ -12,10 +12,13 @@
   <ul>
     <% @genre.each do |genre| %>
       <span>genre</span>
-      <li><%= genre.name %></li>
+      <li>
+        <%= link_to '完了', genre_path(genre.id), method: :delete %>
+        <%= link_to genre.name, genre_tasks_path(genre.id) %>
+      </li>
       <% unless genre.text.nil? %>
         <p>text</p>
-        <li><%= link_to genre.text, genre_tasks_path(genre.id) %></li>
+        <li><%= genre.text %></li>
       <% end %>
       <li>
         <%= link_to '編集', edit_genre_path(genre.id) %>
@@ -23,6 +26,11 @@
       </li>
     <% end %>
   </ul>
+<% end %>
+
+<h2>日付</h2>
+<% if @genre.present? %>
+  <%= link_to '日付一覧',timers_path %>
 <% end %>
 
 <%= link_to '新規投稿', new_genre_path %>

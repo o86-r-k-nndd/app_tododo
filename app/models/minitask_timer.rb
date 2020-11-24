@@ -22,7 +22,7 @@ class MinitaskTimer
     # タスクの取得
     @task = Task.find(task_id)
     # ミニタスクへの保存
-    @minitask = Minitask.create(name: name, text: text)
+    @minitask = Minitask.create(name: name, text: text, task_id: @task.id)
     # 日付情報の取得
     @time = Timer.create(time: time, minitask_id: @minitask.id)
     # 中間テーブルへの保存

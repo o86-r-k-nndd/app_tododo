@@ -48,6 +48,8 @@ _ belongs_to :task
 | ------------- | ---------- | ------------------------------ |
 | text          | text       |                                |
 | name          | string     | null: false                    |
+| genre         | references | null: false, foreign_key: true |
+
 
 
 ### Association
@@ -77,6 +79,7 @@ _ belongs_to :minitask
 | ------------- | ---------- | ------------------------------ |
 | text          | text       |                                |
 | name          | string     | null: false                    |
+| task          | references | null: false, foreign_key: true |
 | timer         | references | null: false, foreign_key: true |
 
 
