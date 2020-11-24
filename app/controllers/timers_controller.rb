@@ -13,7 +13,7 @@ class TimersController < ApplicationController
   # 明日
   def tomorrow
   end
-  # いつか
+  # いつか 現在未実装
   def someday
   end
 
