@@ -10,7 +10,7 @@ class TasksController < ApplicationController
 
   # タスク一覧
   def index
-    @task = Task.order(id: :DESC).all
+    @task = Task.order(id: :DESC).where(genre_id: params[:genre_id])
   end
   # 新規タスク作成
   def new
@@ -49,7 +49,7 @@ class TasksController < ApplicationController
   private
   # ストロングパラメーター
   def task_params
-    params.require(:task).permit(:name, :text)
+    params.require(:task).permit(:name, :text).merge(genre_id: params[:genre_id])
   end
   # ジャンルのテーブルを取得
   def set_table_genre_find

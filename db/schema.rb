@@ -33,8 +33,10 @@ ActiveRecord::Schema.define(version: 2020_11_18_225638) do
   create_table "minitasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "text"
     t.string "name"
+    t.bigint "task_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["task_id"], name: "index_minitasks_on_task_id"
   end
 
   create_table "task_minitasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -49,8 +51,10 @@ ActiveRecord::Schema.define(version: 2020_11_18_225638) do
   create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "text"
     t.string "name"
+    t.bigint "genre_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["genre_id"], name: "index_tasks_on_genre_id"
   end
 
   create_table "timers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
