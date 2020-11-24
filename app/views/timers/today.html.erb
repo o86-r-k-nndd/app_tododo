@@ -3,10 +3,12 @@
 <%= link_to '明日', tomorrow_path %>
 
 <% @times.each do |time| %>
-  <ul>
-    <li>タスク</li>
-    <li><%= time.time %></li>
-    <li><%= time.minitask.name %></li>
-    <li><%= time.minitask.text%></li>
-  </ul>
+<% if Date.today == time.time %>
+    <ul>
+      <li>タスク</li>
+      <li><%= time.time %></li>
+      <li><%= time.minitask.name %></li>
+      <li><%= time.minitask.text%></li>
+    </ul>
+  <% end %>
 <% end %>
