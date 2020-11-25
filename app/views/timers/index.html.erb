@@ -27,17 +27,15 @@
   <div class='timer-bottom'>
     <% @times.each do |time| %>
       <div class='timer-tasks'>
-        <ul>
-          <div class='timer-bottom-form'>
-            <li><%= time.time %></li>
-          </div>
-          <div class='timer-bottom-form'>
-            <li><%= time.minitask.name %></li>
-          </div>
-          <div class='timer-bottom-form'>
-            <li><%= time.minitask.text%></li>
-          </div>
-        <ul>
+        <div class='timer-bottom-form'>
+          <p><%= time.time %></p>
+        </div>
+        <div class='timer-bottom-form'>
+          <p><%= time.minitask.name %></p>
+        </div>
+        <div class='timer-bottom-form'>
+          <p><%= time.minitask.text%></p>
+        </div>
       </div>
     <% end %>
   </div>

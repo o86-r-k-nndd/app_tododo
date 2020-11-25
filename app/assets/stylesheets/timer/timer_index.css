@@ -51,19 +51,21 @@
 }
 
 .timer-tasks {
-  display: flex;
-  justify-self: center;
-  align-items: center;
   height: 5vh;
   width: 80vw;
   border: 1px solid black;
   margin-bottom: 1vh;
   margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .timer-bottom-form {
   padding: auto;
-  margin-left: 8vw;
+  margin-left: 10px;
+  width: 20vw;
+  font-size: 2vh;
 }
 
 a {
