@@ -1,13 +1,45 @@
-<h1>日付一覧</h1>
-<%= link_to '戻る', root_path %>
-<%= link_to '今日', today_path %>
-<%= link_to '明日', tomorrow_path %>
+<div class='timer-main'>
 
-<% @times.each do |time| %>
-  <ul>
-    <li>タスク</li>
-    <li><%= time.time %></li>
-    <li><%= time.minitask.name %></li>
-    <li><%= time.minitask.text%></li>
-  </ul>
-<% end %>
+  <div class='timer-top'>
+    <div class='timer-top-form'>
+      <p><%= current_user.name %></p>
+    </div>
+    <div class='timer-top-form'>
+      <p><%= Date.today %></p>
+    </div>
+    <div class='timer-top-form'>
+      <p>タスク数: <%= @times.length %></p>
+    </div>
+  </div>
+
+  <div class='timer-middle'>
+    <div class=timer-middle-form>
+      <p><%= link_to '戻る', root_path %></p>
+    </div>
+    <div class=timer-middle-form>
+      <p><%= link_to '今日', today_path %></p>
+    </div>
+    <div class=timer-middle-form>
+      <p><%= link_to '明日', tomorrow_path %></p>
+    </div>
+  </div>
+
+  <div class='timer-bottom'>
+    <% @times.each do |time| %>
+      <div class='timer-tasks'>
+        <ul>
+          <div class='timer-bottom-form'>
+            <li><%= time.time %></li>
+          </div>
+          <div class='timer-bottom-form'>
+            <li><%= time.minitask.name %></li>
+          </div>
+          <div class='timer-bottom-form'>
+            <li><%= time.minitask.text%></li>
+          </div>
+        <ul>
+      </div>
+    <% end %>
+  </div>
+
+</div>
