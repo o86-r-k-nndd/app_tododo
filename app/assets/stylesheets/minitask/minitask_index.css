@@ -1,0 +1,50 @@
+.minitask-frame {
+  margin-left: 10px;
+  width: 28vw;
+  height: 30vh;
+  margin-top: 3vh;
+  border: 1px solid black;
+  overflow: scroll;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.minitask-form {
+  width: 18vw;
+  height: 28vh;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.minitask-name {
+  width: 16vw;
+  height: 6vh;
+  padding: auto;
+  border: 1px solid black;
+  margin-bottom: 1vh;
+  text-align: center;
+  overflow: scroll;
+}
+
+.minitask-text {
+  width: 16vw;
+  height: 20vh;
+  padding: auto;
+  border: 1px solid black;
+}
+
+.minitask-btn-form {
+  width: 8vw;
+  height: 28vh;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.minitask-btn {
+  width: 6vw;
+  height: 6vh;
+  padding: auto;
+  margin-bottom: 3vh;
+}
