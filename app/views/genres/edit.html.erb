@@ -1,14 +1,29 @@
 <%# 入力フォーム %>
-<%= form_with model: @genre, local: true do |f| %>
+<%= form_with model: @genre, class: 'form-main', local: true do |f| %>
+  <div class="form-wrap">
 
-  <%# エラーハンドリング %>
-  <%= render "shared/error_message", model: f.object %>
+    <%# エラーハンドリング %>
+    <div class="render-error">
+      <%= render "shared/error_message", model: f.object %>
+    </div>
 
-  <%= f.label :name%>
-  <%= f.text_area :name, placeholder:"ジャンル名"%>
+     <div class='form-header'>
+      <h1 class='form-header-text'>ジャンルを編集してください</h1>
+    </div>
 
-  <%= f.label :text%>
-  <%= f.text_area :text, placeholder:"メモ"%>
+    <div class="form-group">
+      <%= f.label "ジャンルの名前を編集してください" %>
+      <%= f.text_area :name, placeholder:"ジャンルの名前を入力してください"%>
+    </div>
 
-  <%= f.submit "更新する"%>
+    <div class="form-group">
+      <%= f.label "ジャンルの説明のを編集してください" %>
+      <%= f.text_area :text, placeholder:"ジャンルの説明を入力してください"%>
+    </div>
+
+    <div class="form-btn">
+      <%= f.submit "更新する"%>
+    </div>
+
+  </div>
 <% end %>

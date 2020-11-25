@@ -1,0 +1,9 @@
+.index-bottom-text {
+  margin-left: 10px;
+  width: 28vw;
+  height: 40vh;
+  font-size: 3vh;
+  border: 1px solid black;
+  text-align: start;
+  margin-top: 10px;
+}
