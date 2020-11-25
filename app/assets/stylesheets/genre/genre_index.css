@@ -77,12 +77,12 @@
   width: 30vw;
   height: 75vh;
   border: 1px solid black;
-  margin: 1vh 10px;
+  margin-left: 10px;
   overflow: scroll;
+  justify-content: center;
 }
 
 .index-bottom-form {
-  padding: auto;
   margin-left: 10px;
   width: 28vw;
   height: 5vh;
