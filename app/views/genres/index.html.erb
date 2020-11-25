@@ -1,3 +1,62 @@
+<div class='index-main'>
+
+  <div class='index-top'>
+    <% if user_signed_in? %>
+      <div class='index-top-user'>
+        <div class='user-form'>
+          <p><%= link_to current_user.name, "#", class: "user-nickname" %></p> 
+        </div>
+        <div class='user-form'>
+          <p><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logout" %></p>
+        </div>
+      </div>
+    <% else %>
+      <div class='index-top-form'>
+        <div class='user-form'>
+          <p><%= link_to 'ログイン', new_user_session_path, class: "login" %></p>
+        </div>
+        <div class='user-form'>
+          <p><%= link_to '新規登録', new_user_registration_path, class: "sign-up" %></p>
+        </div>
+      </div>
+    <%end%>
+    <div class='index-top-form'>
+      <p>今日の日付: <%= Date.today %></p>
+    </div>
+    <div class='index-top-form'>
+      <% if @genre.present? %>
+        <%= link_to '日毎の予定一覧',timers_path %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class='index-middle'>
+    <div class='index-middle-form'>
+      <p>ジャンル</p>
+    </div>
+  </div>
+
+  <div class='index-bottom'>
+    <div class='index-bottom-frame'>
+      <div class='index-bottom-form'>
+        <p><%= link_to '新規ジャンルを作成', new_genre_path %></p>
+      </div>
+      <% if @genre.present? %>
+        <% @genre.each do |genre| %>
+          <div class='index-bottom-form'>
+            <p>
+              <%= link_to genre.name, genre_tasks_path(genre.id) %>
+              <span class="span-message"><%= link_to '編集', edit_genre_path(genre.id) %></span>
+              <span class="span-message"><%= link_to '削除', genre_path(genre.id), method: :delete %></span>
+            </p>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+</div>
+
 <%# ログイン機能 %>
 <% if user_signed_in? %>
   <li><%= link_to current_user.name, "#", class: "user-nickname" %></li>
