@@ -1,14 +1,29 @@
 <%# 入力フォーム %>
-<%= form_with model: [@genre, @task], local: true do |f| %>
+<%= form_with model: [@genre, @task], class: 'form-main', local: true do |f| %>
+  <div class="form-wrap">
 
-  <%# エラーハンドリング %>
-  <%= render "shared/error_message", model: f.object %>
+    <%# エラーハンドリング %>
+    <div class="render-error">
+      <%= render "shared/error_message", model: f.object %>
+    </div>
 
-  <%= f.label :name%>
-  <%= f.text_area :name, placeholder:"タスク名"%>
+    <div class='form-header'>
+      <h1 class='form-header-text'>タスクを入力してください</h1>
+    </div>
 
-  <%= f.label :text%>
-  <%= f.text_area :text, placeholder:"メモ"%>
+    <div class="form-group">
+      <%= f.label "タスク名を入力してください"%>
+      <%= f.text_area :name, placeholder:"タスク名"%>
+    </div>
 
-  <%= f.submit "投稿する"%>
+    <div class="form-group">
+      <%= f.label "タスクの説明を入力してください"%>
+      <%= f.text_area :text, placeholder:"説明"%>
+    </div>
+
+    <div class="form-btn">
+      <%= f.submit "投稿する"%>
+    </div>
+
+  </div>
 <% end %>

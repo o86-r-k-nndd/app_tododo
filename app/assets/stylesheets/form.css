@@ -12,6 +12,12 @@
   justify-content: center;
 }
 
+.form-btn {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
 /* エラー表示時にレイアウトを崩れない様にする */
 .field_with_errors {
   display: contents;
