@@ -1,19 +1,35 @@
 <%# 入力フォーム %>
-<%= form_with(model: [@genre, @task, @minitask_timer],url: genre_task_minitasks_path, local: true) do |f| %>
+<%= form_with(model: [@genre, @task, @minitask_timer],url: genre_task_minitasks_path, class: 'form-main', local: true) do |f| %>
+  <div class='form-wrap'>
+    <%# エラーハンドリング %>
+    <div class='render-error'>
+      <%= render "shared/error_message", model: f.object %>
+    </div>
 
-  <%# エラーハンドリング %>
-  <%= render "shared/error_message", model: f.object %>
+    <div class='form-header'>
+      <h1 class='form-header-text'>予定を入力してください</h1>
+    </div>
 
-  <%# ミニタスク入力 %>
-  <%= f.label :name %>
-  <%= f.text_area :name, placeholder:"タスク名"%>
+    <%# ミニタスク入力 %>
+    <div class='form-group'>
+      <%= f.label "予定の名前を入力してください" %>
+      <%= f.text_area :name, placeholder:"予定の名前"%>
+    </div>
 
-  <%= f.label :text %>
-  <%= f.text_area :text, placeholder:"メモ"%>
+    <div class='form-group'>
+      <%= f.label "予定の説明を入力してください" %>
+      <%= f.text_area :text, placeholder:"予定の説明"%>
+    </div>
 
-  <%# 日付の入力 %>
-  <%= f.label :time %>
-  <%= f.date_field :time %>
+    <%# 日付の入力 %>
+    <div class='form-group'>
+      <%= f.label "日時を指定してください" %>
+      <%= f.date_field :time %>
+    </div>
 
-  <%= f.submit "投稿する"%>
+    <div class='form-btn'>
+      <%= f.submit "投稿する"%>
+    </div>
+
+  </div>
 <% end %>
