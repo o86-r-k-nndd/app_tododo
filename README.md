@@ -1,102 +1,116 @@
-# DB設計
+# Tododo
 
-## users table
-ユーザー管理機能
+## アプリケーション概要
+ジャンル、タスク、予定の３層構造のタスク管理アプリケーション
 
-| Column             | Type    | Options                   |
-| ------------------ | ------- | ------------------------- |
-| name               | string  | null: false               |
-| email              | string  | null: false, unique: true |
-| encrypted_password | string  | null: false               |
+## URL
+https://app-tododo.herokuapp.com/
 
+## テストアカウント
+Email:   `testtest.@test.com`
+Password `1a1a1a`
 
-### Association
-_ has_many :genres
+## Basic認証
+Username `ontech31050`
+Password `86on31050`
 
-## genres table
-ジャンル情報
+## 利用方法
+サインアップを行い、ジャンルを新規作成する。新規作成されたジャンルは一覧表示される
+作成されたジャンルをクリックする事でジャンルに紐づいたタスクの一覧表示へと遷移する
+タスクの一覧表示では紐づいたジャンルの情報が表示される
+タスクを新規登録する事でタスクの情報が一覧表示される
+表示されているタスクをクリックする事で予定へと遷移する
+遷移した画面ではジャンル、タスクの情報が表示される
+予定を新規登録で作成する事ができる
+新規登録をした予定は一覧表示される
+予定を作成する事で日毎の一覧表示画面へ遷移するリンクが表示される
+リンクをクリックする事で日毎の予定が表示される画面へ遷移する事ができる
+遷移した画面では、全ての情報を表示する画面、今日の予定のみを表示する画面、明日の予定を表示する画面それぞれへ遷移するリンクが存在する
 
-| Column     | Type       | Options                        |
-| ---------- | ---------- | ------------------------------ |
-| text       | text       |                                |
-| name       | string     | null: false                    |
-| user       | references | null: false, foreign_key: true |
+## 目指した課題解決
+多くのタスク管理アプリはタグ分けで管理するものが多数を占めています。例えば仕事であれば仕事と言う大きな枠組みに中で、タスクを管理していく方法です。
+しかし最近は、仕事の中にも副業と本業が別れる人、副業も一つではなく複数ある人が一般的になっています。そこで仕事と言うジャンルを決め、そこでどの様な仕事のタスクがあるのか設定をし、そのタスク事の予定を設定する事で、さまざまな副業をしている人が予定を管理しやすくなる事を目指しました
 
-### Association
-_ belongs_to :user
-_ has_many   :genre_tasks
-_ has_many   :tasks, through: :genre_tasks
+## 要件定義
 
+### ユーザー管理機能の実装
 
-#  genre_tasks table
-ジャンル_タスク中間テーブル
+* アプリケーションにアクセスした時にログイン画面に遷移する様にする
+* サインイン、ログイン、ログアウト機能を実装し各ユーザーの情報をテーブルに保存できる様にする
 
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
-| genre  | references | null: false, foreign_key: true |
-| task   | references | null: false, foreign_key: true |
+### ジャンル管理機能の実装
 
-### Association
-_ belongs_to :genre
-_ belongs_to :task
+* ログインしたユーザーはトップページへと遷移する様にする
+* 新規ジャンル登録をクリックすると新規投稿画面へ遷移しジャンルを新規作成する事ができる
+* 登録したジャンルはトップページへと表示され、削除、編集リンクが表示される
 
+### タスク管理機能
+ 
+* トップページから表示されているジャンルをクリックするとタスクの一覧表示画面へと遷移する
+* 遷移した画面ではクリックしたジャンルの名前とテキストを表示する
+* 新規投稿ボタンをクリックするとタスクの新規作成をする事ができる
+* 登録したタスクは一覧表示画面へと表示され、削除、編集リンクが表示される
 
-## tasks table
-タスク情報
+### 予定管理機能
 
-| Column        | Type       | Options                        |
-| ------------- | ---------- | ------------------------------ |
-| text          | text       |                                |
-| name          | string     | null: false                    |
-| genre         | references | null: false, foreign_key: true |
+* タスク一覧から表示されているタスクをクリックすると予定の一覧表示画面へと遷移する
+* 遷移した画面ではクリックしたジャンルの名前とテキスト、タスクの名前とテキストを表示する
+* 新規投稿ボタンをクリックすると予定の新規作成をする事ができる
+* 登録した予定は一覧表示画面へと表示され、削除、編集リンクが表示される
 
+### 日付管理機能
 
+* 予定の新規登録時に日付に関する情報を入力する事でTimerモデルへ値が保存される
 
-### Association
-_ has_many :genre_tasks
-_ has_many :task_minitasks
-_ has_many :genres, through: :genre_tasks
-_ has_many :minitasks, through: :genre_tasks
+### 日付一覧表示機能
 
+* トップページ、それぞれの一覧表示に表示されている日毎の一覧表示リンクをクリックする事で日付一覧表示画面へと遷移する
+* 遷移した画面では、日付の情報と予定の情報が表示される
+* 戻る、今日、明日のリンクが表示され、戻るを押したらトップページへと遷移し、今日、明日のリンクをクリックした場合は、それぞれの日付の一覧へと遷移する
+* それぞれの日付の一覧へと遷移した場合、対応する日付と予定の情報のみが表示される
+* それぞれの日付一覧へと遷移した場合、表示されていない画面へ遷移するリンクが表示される
 
-#  task_minitasks table
-タスク_ミニタスク中間テーブル
+### Basic認証
 
-| Column   | Type       | Options                        |
-| -------- | ---------- | ------------------------------ |
-| task     | references | null: false, foreign_key: true |
-| minitask | references | null: false, foreign_key: true |
+* ユーザーがアプリケーションへアクセスをした時、Basic認証による認証をおこなう
 
-### Association
-_ belongs_to :task
-_ belongs_to :minitask
+## 実装した機能
 
+### ユーザー管理機能
+<img width="724" alt="ログイン" src="https://user-images.githubusercontent.com/72374715/100394885-1324e980-3082-11eb-8b9d-217966e31e17.png">
+`Gem devise`を用いてユーザー管理機能を実装
 
-## minitasks table
-ミニタスク情報
+### ジャンル管理機能
+<img width="1431" alt="ジャンル" src="https://user-images.githubusercontent.com/72374715/100394893-18823400-3082-11eb-97c7-daa11397ffbc.png">
+新規作成をしたジャンルが表示される様にする
 
-| Column        | Type       | Options                        |
-| ------------- | ---------- | ------------------------------ |
-| text          | text       |                                |
-| name          | string     | null: false                    |
-| task          | references | null: false, foreign_key: true |
-| timer         | references | null: false, foreign_key: true |
+### タスク管理機能
+<img width="1431" alt="タスク" src="https://user-images.githubusercontent.com/72374715/100394925-3780c600-3082-11eb-86a7-3694c38a3d3e.png">
+新規作成をしたタスクの情報が表示される様にする
+指定したジャンルの名前と説明が表示される様にする
 
+### 予定管理機能
+<img width="1344" alt="予定" src="https://user-images.githubusercontent.com/72374715/100394929-3c457a00-3082-11eb-825b-6506c9b27834.png">
+新規作成した予定の名前と説明が表示される様にする
+指定されたジャンルとタスクの名前と説明が表示される
 
-### Association
-_ has_many :task_minitasks
-_ has_many :tasks, through: :genre_tasks
-_ has_one  :timer
+### 日付一覧機能
+<img width="1344" alt="日付一覧" src="https://user-images.githubusercontent.com/72374715/100394934-41a2c480-3082-11eb-90c4-38a23c3ba7fe.png">
+作成された予定の情報が表示される
+今日、明日などの特定の日付のみを表示させる画面へのリンクがある
 
+## 実装予定
 
-## timers table
-時間情報
+* ビューをより見やすい形へ編集する
+* 日付一覧表示機能で表示できる項目を増やす
 
-| Column   | Type       | Options                        |
-| -------- | ---------- | ------------------------------ |
-| time     | date       | null: false                    |
-| minitask | references | null: false, foreign_key: true |
+## データベース設計
+![DB drawio](https://user-images.githubusercontent.com/72374715/100394946-4a939600-3082-11eb-8545-13677c434ba5.png)
 
+## ローカル環境での動作方法
+* % git clone https://github.com/o86-r-k-nndd/app_tododo.git
+* % cd app_tododo
+* % bundle install
+* % rails db:create
+* % rails db:migrate
 
-### Association
-_ belongs_to :minitask
