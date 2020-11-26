@@ -77,7 +77,27 @@ Password `86on31050`
 ## 実装した機能
 
 ### ユーザー管理機能
+<img width="724" alt="ログイン" src="https://user-images.githubusercontent.com/72374715/100394885-1324e980-3082-11eb-8b9d-217966e31e17.png">
+`Gem devise`を用いてユーザー管理機能を実装
+
 ### ジャンル管理機能
+<img width="1431" alt="ジャンル" src="https://user-images.githubusercontent.com/72374715/100394893-18823400-3082-11eb-97c7-daa11397ffbc.png">
+新規作成をしたジャンルが表示される様にする
+
+### タスク管理機能
+<img width="1431" alt="タスク" src="https://user-images.githubusercontent.com/72374715/100394925-3780c600-3082-11eb-86a7-3694c38a3d3e.png">
+新規作成をしたタスクの情報が表示される様にする
+指定したジャンルの名前と説明が表示される様にする
+
+### 予定管理機能
+<img width="1344" alt="予定" src="https://user-images.githubusercontent.com/72374715/100394929-3c457a00-3082-11eb-825b-6506c9b27834.png">
+新規作成した予定の名前と説明が表示される様にする
+指定されたジャンルとタスクの名前と説明が表示される
+
+### 日付一覧機能
+<img width="1344" alt="日付一覧" src="https://user-images.githubusercontent.com/72374715/100394934-41a2c480-3082-11eb-90c4-38a23c3ba7fe.png">
+作成された予定の情報が表示される
+今日、明日などの特定の日付のみを表示させる画面へのリンクがある
 
 ## 実装予定
 
@@ -85,3 +105,5 @@ Password `86on31050`
 * 日付一覧表示機能で表示できる項目を増やす
 
 ## データベース設計
+![DB drawio](https://user-images.githubusercontent.com/72374715/100394946-4a939600-3082-11eb-8545-13677c434ba5.png)
+
