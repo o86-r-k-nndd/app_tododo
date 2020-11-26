@@ -107,3 +107,10 @@ Password `86on31050`
 ## データベース設計
 ![DB drawio](https://user-images.githubusercontent.com/72374715/100394946-4a939600-3082-11eb-8545-13677c434ba5.png)
 
+## ローカル環境での動作方法
+* % git clone https://github.com/o86-r-k-nndd/app_tododo.git
+* % cd app_tododo
+* % bundle install
+* % rails db:create
+* % rails db:migrate
+
