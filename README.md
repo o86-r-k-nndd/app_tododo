@@ -115,3 +115,8 @@ https://app-tododo.herokuapp.com/
 * `% rails db:create`
 * `% rails db:migrate`
 
+### 開発環境
+* `Ruby 6.0.0`
+* `Ruby on Rails`
+* `mysql`
+
